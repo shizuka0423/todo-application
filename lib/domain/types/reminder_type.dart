@@ -1,0 +1,1 @@
+enum ReminderType { start, end }
