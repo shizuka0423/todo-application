@@ -1,1 +1,1 @@
-# application-project
+# About todo application on GitHub
