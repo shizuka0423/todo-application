@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_todo_application/presentation/theme/icons.dart';
 import 'package:flutter_todo_application/presentation/theme/radius_styles.dart';
 import 'package:flutter_todo_application/presentation/theme/sizes.dart';

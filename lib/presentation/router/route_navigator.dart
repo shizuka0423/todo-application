@@ -189,7 +189,7 @@ final router = GoRouter(
                         final selected = extra.item2;
                         return BottomSheetPage(
                           constraints: BoxConstraints(
-                            maxHeight: MediaQuery.sizeOf(context).height * 0.7,
+                            maxHeight: MediaQuery.sizeOf(context).height * 0.8,
                           ),
                           builder:
                               (context) => Navigator(

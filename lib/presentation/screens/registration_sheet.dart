@@ -6,9 +6,9 @@ import 'package:flutter_todo_application/presentation/theme/radius_styles.dart';
 import 'package:flutter_todo_application/presentation/theme/text_styles.dart';
 import 'package:flutter_todo_application/presentation/widgets/custom_divider.dart';
 import 'package:flutter_todo_application/presentation/widgets/list_tiles.dart';
-import 'package:flutter_todo_application/presentation/widgets/table_calendar_screen.dart';
 import 'package:flutter_todo_application/presentation/widgets/text_fields.dart';
 import 'package:flutter_todo_application/presentation/widgets/tiles/date_pick_tiles.dart';
+import 'package:flutter_todo_application/presentation/widgets/tiles/notification_tiles.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -50,9 +50,7 @@ class RegistrationSheet extends HookConsumerWidget {
     }, const []);
 
     return SizedBox(
-      height:
-          MediaQuery.sizeOf(context).height * 0.5 +
-          MediaQuery.of(context).viewInsets.bottom,
+      height: MediaQuery.sizeOf(context).height * 0.8,
       child: Column(
         children: [
           AppBar(

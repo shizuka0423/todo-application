@@ -71,27 +71,27 @@ ListTile importanceList(Color color, int importance) {
   );
 }
 
-class NotificationTile extends StatelessWidget {
-  const NotificationTile(this._checked, this._onChanged, {super.key});
+// class NotificationTile extends StatelessWidget {
+//   const NotificationTile(this._checked, this._onChanged, {super.key});
 
-  final bool _checked;
-  final ValueChanged<bool> _onChanged;
+//   final bool _checked;
+//   final ValueChanged<bool> _onChanged;
 
-  @override
-  Widget build(BuildContext context) {
-    return ListTile(
-      tileColor: Theme.of(context).colorScheme.surface,
-      shape: RoundedRectangleBorder(borderRadius: AppRadius.top),
-      minTileHeight: AppSize.tile2,
-      leading: AppIcons.notice,
-      title: Text('通知'),
-      trailing: CupertinoSwitch(
-        value: _checked,
-        onChanged: (value) => _onChanged(value),
-      ),
-    );
-  }
-}
+//   @override
+//   Widget build(BuildContext context) {
+//     return ListTile(
+//       tileColor: Theme.of(context).colorScheme.surface,
+//       shape: RoundedRectangleBorder(borderRadius: AppRadius.top),
+//       minTileHeight: AppSize.tile2,
+//       leading: AppIcons.notice,
+//       title: Text('通知'),
+//       trailing: CupertinoSwitch(
+//         value: _checked,
+//         onChanged: (value) => _onChanged(value),
+//       ),
+//     );
+//   }
+// }
 
 class ImportanceTile extends StatelessWidget {
   const ImportanceTile(this._index, this._onChanged, {super.key});
