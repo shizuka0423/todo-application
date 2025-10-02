@@ -23,8 +23,9 @@ class ListNotifier extends _$ListNotifier {
         .read(taskNotifierProvider.notifier)
         .updateProgress(task.id, updatedProgress);
 
-    if (task.remindMinute == null) return;
-    final remindMinute = task.remindMinute!;
+    if (task.startReminderMinutes == null && task.endReminderMinutes == null) {
+      return;
+    }
 
     final notificationService = NotificationService();
     final reminders = ref
@@ -47,17 +48,34 @@ class ListNotifier extends _$ListNotifier {
       //   notificationService.cancelNotifications(reminder.reminderId);
       // }
     } else {
+      final startReminderMinutes = task.startReminderMinutes;
+      final endReminderMinutes = task.endReminderMinutes;
       final now = DateTime.now();
+
       for (final reminder in reminders) {
         if (reminder.scheduleAt.isAfter(now)) {
           await notificationService.scheduleNotification(
             reminder.reminderId,
             reminder.scheduleAt,
-            remindMinute,
+            //登録時nullならreminderは絶対に生成されないため
+            reminder.type == 0 ? startReminderMinutes! : endReminderMinutes!,
             task.title,
           );
         }
       }
+
+      // final minutes =
+      //     reminder.type == ReminderType.start.index
+      //         ? startReminderMinutes
+      //         : endReminderMinutes;
+      // if (minutes != null) {
+      //   await notificationService.scheduleNotification(
+      //     reminder.reminderId,
+      //     reminder.scheduleAt,
+      //     minutes,
+      //     task.title,
+      //   );
+      // }
 
       // if (task.startAt != null) {
       //   final type = ReminderType.start.index;

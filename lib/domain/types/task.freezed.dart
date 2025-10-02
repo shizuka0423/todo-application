@@ -35,8 +35,10 @@ mixin _$Task {
   DateTime? get startAt => throw _privateConstructorUsedError;
   @JsonKey(name: 'end_at')
   DateTime? get endAt => throw _privateConstructorUsedError;
-  @JsonKey(name: 'remind_minute')
-  int? get remindMinute => throw _privateConstructorUsedError;
+  @JsonKey(name: 'start_reminder_minutes')
+  int? get startReminderMinutes => throw _privateConstructorUsedError;
+  @JsonKey(name: 'end_reminder_minutes')
+  int? get endReminderMinutes => throw _privateConstructorUsedError;
   @JsonKey(name: 'created_at')
   DateTime get createdAt => throw _privateConstructorUsedError;
   @JsonKey(name: 'updated_at')
@@ -67,7 +69,8 @@ abstract class $TaskCopyWith<$Res> {
     @JsonKey(name: 'repeat_count') int repeatCount,
     @JsonKey(name: 'start_at') DateTime? startAt,
     @JsonKey(name: 'end_at') DateTime? endAt,
-    @JsonKey(name: 'remind_minute') int? remindMinute,
+    @JsonKey(name: 'start_reminder_minutes') int? startReminderMinutes,
+    @JsonKey(name: 'end_reminder_minutes') int? endReminderMinutes,
     @JsonKey(name: 'created_at') DateTime createdAt,
     @JsonKey(name: 'updated_at') DateTime updatedAt,
   });
@@ -98,7 +101,8 @@ class _$TaskCopyWithImpl<$Res, $Val extends Task>
     Object? repeatCount = null,
     Object? startAt = freezed,
     Object? endAt = freezed,
-    Object? remindMinute = freezed,
+    Object? startReminderMinutes = freezed,
+    Object? endReminderMinutes = freezed,
     Object? createdAt = null,
     Object? updatedAt = null,
   }) {
@@ -154,10 +158,15 @@ class _$TaskCopyWithImpl<$Res, $Val extends Task>
                     ? _value.endAt
                     : endAt // ignore: cast_nullable_to_non_nullable
                         as DateTime?,
-            remindMinute:
-                freezed == remindMinute
-                    ? _value.remindMinute
-                    : remindMinute // ignore: cast_nullable_to_non_nullable
+            startReminderMinutes:
+                freezed == startReminderMinutes
+                    ? _value.startReminderMinutes
+                    : startReminderMinutes // ignore: cast_nullable_to_non_nullable
+                        as int?,
+            endReminderMinutes:
+                freezed == endReminderMinutes
+                    ? _value.endReminderMinutes
+                    : endReminderMinutes // ignore: cast_nullable_to_non_nullable
                         as int?,
             createdAt:
                 null == createdAt
@@ -194,7 +203,8 @@ abstract class _$$TaskImplCopyWith<$Res> implements $TaskCopyWith<$Res> {
     @JsonKey(name: 'repeat_count') int repeatCount,
     @JsonKey(name: 'start_at') DateTime? startAt,
     @JsonKey(name: 'end_at') DateTime? endAt,
-    @JsonKey(name: 'remind_minute') int? remindMinute,
+    @JsonKey(name: 'start_reminder_minutes') int? startReminderMinutes,
+    @JsonKey(name: 'end_reminder_minutes') int? endReminderMinutes,
     @JsonKey(name: 'created_at') DateTime createdAt,
     @JsonKey(name: 'updated_at') DateTime updatedAt,
   });
@@ -222,7 +232,8 @@ class __$$TaskImplCopyWithImpl<$Res>
     Object? repeatCount = null,
     Object? startAt = freezed,
     Object? endAt = freezed,
-    Object? remindMinute = freezed,
+    Object? startReminderMinutes = freezed,
+    Object? endReminderMinutes = freezed,
     Object? createdAt = null,
     Object? updatedAt = null,
   }) {
@@ -278,10 +289,15 @@ class __$$TaskImplCopyWithImpl<$Res>
                 ? _value.endAt
                 : endAt // ignore: cast_nullable_to_non_nullable
                     as DateTime?,
-        remindMinute:
-            freezed == remindMinute
-                ? _value.remindMinute
-                : remindMinute // ignore: cast_nullable_to_non_nullable
+        startReminderMinutes:
+            freezed == startReminderMinutes
+                ? _value.startReminderMinutes
+                : startReminderMinutes // ignore: cast_nullable_to_non_nullable
+                    as int?,
+        endReminderMinutes:
+            freezed == endReminderMinutes
+                ? _value.endReminderMinutes
+                : endReminderMinutes // ignore: cast_nullable_to_non_nullable
                     as int?,
         createdAt:
             null == createdAt
@@ -312,7 +328,8 @@ class _$TaskImpl implements _Task {
     @JsonKey(name: 'repeat_count') required this.repeatCount,
     @JsonKey(name: 'start_at') this.startAt,
     @JsonKey(name: 'end_at') this.endAt,
-    @JsonKey(name: 'remind_minute') this.remindMinute,
+    @JsonKey(name: 'start_reminder_minutes') this.startReminderMinutes,
+    @JsonKey(name: 'end_reminder_minutes') this.endReminderMinutes,
     @JsonKey(name: 'created_at') required this.createdAt,
     @JsonKey(name: 'updated_at') required this.updatedAt,
   });
@@ -347,8 +364,11 @@ class _$TaskImpl implements _Task {
   @JsonKey(name: 'end_at')
   final DateTime? endAt;
   @override
-  @JsonKey(name: 'remind_minute')
-  final int? remindMinute;
+  @JsonKey(name: 'start_reminder_minutes')
+  final int? startReminderMinutes;
+  @override
+  @JsonKey(name: 'end_reminder_minutes')
+  final int? endReminderMinutes;
   @override
   @JsonKey(name: 'created_at')
   final DateTime createdAt;
@@ -358,7 +378,7 @@ class _$TaskImpl implements _Task {
 
   @override
   String toString() {
-    return 'Task(id: $id, title: $title, description: $description, tagId: $tagId, importance: $importance, progress: $progress, regularly: $regularly, repeatCount: $repeatCount, startAt: $startAt, endAt: $endAt, remindMinute: $remindMinute, createdAt: $createdAt, updatedAt: $updatedAt)';
+    return 'Task(id: $id, title: $title, description: $description, tagId: $tagId, importance: $importance, progress: $progress, regularly: $regularly, repeatCount: $repeatCount, startAt: $startAt, endAt: $endAt, startReminderMinutes: $startReminderMinutes, endReminderMinutes: $endReminderMinutes, createdAt: $createdAt, updatedAt: $updatedAt)';
   }
 
   @override
@@ -381,8 +401,10 @@ class _$TaskImpl implements _Task {
                 other.repeatCount == repeatCount) &&
             (identical(other.startAt, startAt) || other.startAt == startAt) &&
             (identical(other.endAt, endAt) || other.endAt == endAt) &&
-            (identical(other.remindMinute, remindMinute) ||
-                other.remindMinute == remindMinute) &&
+            (identical(other.startReminderMinutes, startReminderMinutes) ||
+                other.startReminderMinutes == startReminderMinutes) &&
+            (identical(other.endReminderMinutes, endReminderMinutes) ||
+                other.endReminderMinutes == endReminderMinutes) &&
             (identical(other.createdAt, createdAt) ||
                 other.createdAt == createdAt) &&
             (identical(other.updatedAt, updatedAt) ||
@@ -403,7 +425,8 @@ class _$TaskImpl implements _Task {
     repeatCount,
     startAt,
     endAt,
-    remindMinute,
+    startReminderMinutes,
+    endReminderMinutes,
     createdAt,
     updatedAt,
   );
@@ -434,7 +457,8 @@ abstract class _Task implements Task {
     @JsonKey(name: 'repeat_count') required final int repeatCount,
     @JsonKey(name: 'start_at') final DateTime? startAt,
     @JsonKey(name: 'end_at') final DateTime? endAt,
-    @JsonKey(name: 'remind_minute') final int? remindMinute,
+    @JsonKey(name: 'start_reminder_minutes') final int? startReminderMinutes,
+    @JsonKey(name: 'end_reminder_minutes') final int? endReminderMinutes,
     @JsonKey(name: 'created_at') required final DateTime createdAt,
     @JsonKey(name: 'updated_at') required final DateTime updatedAt,
   }) = _$TaskImpl;
@@ -466,8 +490,11 @@ abstract class _Task implements Task {
   @JsonKey(name: 'end_at')
   DateTime? get endAt;
   @override
-  @JsonKey(name: 'remind_minute')
-  int? get remindMinute;
+  @JsonKey(name: 'start_reminder_minutes')
+  int? get startReminderMinutes;
+  @override
+  @JsonKey(name: 'end_reminder_minutes')
+  int? get endReminderMinutes;
   @override
   @JsonKey(name: 'created_at')
   DateTime get createdAt;

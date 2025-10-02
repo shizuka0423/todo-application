@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_todo_application/application/state/registration_notifier.dart';
+import 'package:flutter_todo_application/domain/types/reminder_type.dart';
 import 'package:flutter_todo_application/domain/types/tag.dart';
 import 'package:flutter_todo_application/presentation/theme/radius_styles.dart';
 import 'package:flutter_todo_application/presentation/theme/text_styles.dart';
@@ -31,7 +32,8 @@ class RegistrationSheet extends HookConsumerWidget {
     final startAt = useState<DateTime?>(null);
     final endAt = useState<DateTime?>(null);
     //
-    final remindMinute = useState<bool>(false);
+    final startReminderMinutes = useState<int?>(null);
+    final endReminderMinutes = useState<int?>(null);
 
     final isLoading = useState<bool>(false);
     final isValid = useState<bool>(false);
@@ -83,8 +85,7 @@ class RegistrationSheet extends HookConsumerWidget {
                           } else {
                             isLoading.value = true;
                             //処理変更したため通知はon/offではなくズレを指定
-                            final notification =
-                                remindMinute.value == !isDate ? 1 : 0;
+
                             final notifier = ref.read(
                               registrationNotifierProvider.notifier,
                             );
@@ -96,7 +97,8 @@ class RegistrationSheet extends HookConsumerWidget {
                               0,
                               startAt.value,
                               endAt.value,
-                              notification,
+                              startReminderMinutes.value,
+                              endReminderMinutes.value,
                             );
                             titleController.clear();
                             isLoading.value = false;
@@ -178,8 +180,9 @@ class RegistrationSheet extends HookConsumerWidget {
                         ? Column(
                           children: [
                             NotificationTile(
-                              remindMinute.value,
-                              (value) => remindMinute.value = value,
+                              ReminderType.start,
+                              startReminderMinutes.value,
+                              (value) => startReminderMinutes.value = value,
                             ),
                             CustomDivider(),
                             RegularlyTile(

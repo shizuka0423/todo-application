@@ -21,7 +21,8 @@ _$TaskImpl _$$TaskImplFromJson(Map<String, dynamic> json) => _$TaskImpl(
           : DateTime.parse(json['start_at'] as String),
   endAt:
       json['end_at'] == null ? null : DateTime.parse(json['end_at'] as String),
-  remindMinute: (json['remind_minute'] as num?)?.toInt(),
+  startReminderMinutes: (json['start_reminder_minutes'] as num?)?.toInt(),
+  endReminderMinutes: (json['end_reminder_minutes'] as num?)?.toInt(),
   createdAt: DateTime.parse(json['created_at'] as String),
   updatedAt: DateTime.parse(json['updated_at'] as String),
 );
@@ -38,7 +39,8 @@ Map<String, dynamic> _$$TaskImplToJson(_$TaskImpl instance) =>
       'repeat_count': instance.repeatCount,
       'start_at': instance.startAt?.toIso8601String(),
       'end_at': instance.endAt?.toIso8601String(),
-      'remind_minute': instance.remindMinute,
+      'start_reminder_minutes': instance.startReminderMinutes,
+      'end_reminder_minutes': instance.endReminderMinutes,
       'created_at': instance.createdAt.toIso8601String(),
       'updated_at': instance.updatedAt.toIso8601String(),
     };

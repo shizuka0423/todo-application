@@ -17,7 +17,8 @@ class Task with _$Task {
     @JsonKey(name: 'repeat_count') required int repeatCount,
     @JsonKey(name: 'start_at') DateTime? startAt,
     @JsonKey(name: 'end_at') DateTime? endAt,
-    @JsonKey(name: 'remind_minute') int? remindMinute,
+    @JsonKey(name: 'start_reminder_minutes') int? startReminderMinutes,
+    @JsonKey(name: 'end_reminder_minutes') int? endReminderMinutes,
     @JsonKey(name: 'created_at') required DateTime createdAt,
     @JsonKey(name: 'updated_at') required DateTime updatedAt,
   }) = _Task;
@@ -32,7 +33,8 @@ class Task with _$Task {
     int repeatCount,
     DateTime? startAt,
     DateTime? endAt,
-    int? remindMinute,
+    int? startReminderMinutes,
+    int? endReminderMinutes,
   ) {
     return Task(
       id: Ulid().toString(),
@@ -45,7 +47,8 @@ class Task with _$Task {
       endAt: endAt,
       createdAt: DateTime.now(),
       updatedAt: DateTime.now(),
-      remindMinute: remindMinute,
+      startReminderMinutes: startReminderMinutes,
+      endReminderMinutes: endReminderMinutes,
     );
   }
 }

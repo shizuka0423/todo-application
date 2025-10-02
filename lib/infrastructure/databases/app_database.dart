@@ -12,8 +12,8 @@ class AppDatabase {
   Database? _db;
 
   Future<Database> get db async {
-    //final path = join(await getDatabasesPath(), 'todo.db');
-    //await deleteDatabase(path);
+    // final path = join(await getDatabasesPath(), 'todo.db');
+    // await deleteDatabase(path);
 
     debugPrint("dbが呼び出されました");
     if (_db != null) {
@@ -39,7 +39,8 @@ class AppDatabase {
       repeat_count INTEGER,
       start_at TEXt,
       end_at TEXT,
-      remind_minute INTEGER,
+      start_reminder_minutes INTEGER,
+      end_reminder_minutes INTEGER,
       created_at TEXT,
       updated_at TEXT,
       FOREIGN KEY (tag_id) REFERENCES tags(id) ON DELETE SET NULL

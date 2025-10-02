@@ -83,7 +83,8 @@ class TaskTile extends ConsumerWidget {
                 '期限日：${_task.endAt!.format(format: _task.startAt!.year == today.year ? 'M月d日 H:mm' : 'y年M月d日 H:mm')}',
               )
               : SizedBox.shrink(),
-          _task.remindMinute != null
+          //endも見る
+          _task.startReminderMinutes != null
               ? Icon(IconDatas.notice, size: 18)
               : SizedBox.shrink(),
           Spacer(),

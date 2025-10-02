@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_todo_application/application/state/edit_notifier.dart';
 import 'package:flutter_todo_application/application/state/sub_task_notifier.dart';
+import 'package:flutter_todo_application/domain/types/reminder_type.dart';
 import 'package:flutter_todo_application/domain/types/tag.dart';
 import 'package:flutter_todo_application/domain/types/task.dart';
 import 'package:flutter_todo_application/presentation/theme/icons.dart';
@@ -38,7 +39,8 @@ class EditScreen extends HookConsumerWidget {
     //final isRepeatCount = useState<int>(0);
     final startAt = useState<DateTime?>(_task.startAt);
     final endAt = useState<DateTime?>(_task.endAt);
-    final remindMinute = useState<bool>(_task.remindMinute == 1);
+    final startReminderMinutes = useState<int?>(_task.startReminderMinutes);
+    final endReminderMinutes = useState<int?>(_task.endReminderMinutes);
 
     final isLoading = useState<bool>(true);
     final isValid = useState<bool>(true);
@@ -82,7 +84,8 @@ class EditScreen extends HookConsumerWidget {
                         startAt: startAt.value,
                         endAt: endAt.value,
                         updatedAt: DateTime.now(),
-                        remindMinute: remindMinute.value ? 1 : 0,
+                        startReminderMinutes: startReminderMinutes.value,
+                        endReminderMinutes: endReminderMinutes.value,
                       );
                       await notifier.updateTask(updated);
                       isLoading.value = false;
@@ -165,8 +168,9 @@ class EditScreen extends HookConsumerWidget {
                     children: [
                       blank,
                       NotificationTile(
-                        remindMinute.value,
-                        (value) => remindMinute.value = value,
+                        ReminderType.start,
+                        startReminderMinutes.value,
+                        (value) => startReminderMinutes.value = value,
                       ),
                       CustomDivider(),
                       RegularlyTile(

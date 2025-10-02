@@ -33,24 +33,24 @@ ListTile regularlyList(Color color) {
   );
 }
 
-ListTile tagList(Color color, List<Tag> tags, int isTags) {
-  return ListTile(
-    onTap: () {},
-    shape: RoundedRectangleBorder(borderRadius: AppRadius.all),
-    minTileHeight: 24,
-    tileColor: color,
-    leading: AppIcons.tag,
-    title: Text('ラベル'),
-    trailing: Text(
-      tags
-          .firstWhere(
-            (tag) => tag.id == isTags,
-            orElse: () => tags.firstWhere((tag) => tag.id == 1),
-          )
-          .name,
-    ),
-  );
-}
+// ListTile tagList(Color color, List<Tag> tags, int isTags) {
+//   return ListTile(
+//     onTap: () {},
+//     shape: RoundedRectangleBorder(borderRadius: AppRadius.all),
+//     minTileHeight: 24,
+//     tileColor: color,
+//     leading: AppIcons.tag,
+//     title: Text('ラベル'),
+//     trailing: Text(
+//       tags
+//           .firstWhere(
+//             (tag) => tag.id == isTags,
+//             orElse: () => tags.firstWhere((tag) => tag.id == 1),
+//           )
+//           .name,
+//     ),
+//   );
+// }
 
 ListTile importanceList(Color color, int importance) {
   return ListTile(

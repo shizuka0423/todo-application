@@ -26,7 +26,10 @@ class EditNotifier extends _$EditNotifier {
 
     final reminders = reminderNotifier.getMultiReminder(task.id);
 
-    if (task.remindMinute == null) {
+    final startReminderMinutes = task.startReminderMinutes;
+    final endReminderMinutes = task.endReminderMinutes;
+
+    if (startReminderMinutes == null && endReminderMinutes == null) {
       if (reminders.isEmpty) return;
       final reminderIds = reminders.map((r) => r.reminderId).toList();
       await repository.reminderMultiDelete(task.id);
@@ -41,7 +44,9 @@ class EditNotifier extends _$EditNotifier {
     final startType = ReminderType.start.index;
     final endType = ReminderType.end.index;
 
-    if (startAt != null && startAt.isAfter(now)) {
+    if (startReminderMinutes != null &&
+        startAt != null &&
+        startAt.isAfter(now)) {
       final reminderIndex = reminders.indexWhere((r) => r.type == startType);
       if (reminderIndex != -1) {
         final updatedReminder = reminders[reminderIndex].copyWith(
@@ -51,7 +56,7 @@ class EditNotifier extends _$EditNotifier {
           updatedReminder,
           startType,
           startAt,
-          task.remindMinute!,
+          startReminderMinutes,
           task.title,
         );
       } else {
@@ -59,7 +64,7 @@ class EditNotifier extends _$EditNotifier {
           startAt,
           startType,
           task.id,
-          task.remindMinute!,
+          startReminderMinutes,
           task.title,
         );
       }
@@ -71,7 +76,7 @@ class EditNotifier extends _$EditNotifier {
       }
     }
 
-    if (endAt != null && endAt.isAfter(now)) {
+    if (endReminderMinutes != null && endAt != null && endAt.isAfter(now)) {
       final reminderIndex = reminders.indexWhere((r) => r.type == endType);
       if (reminderIndex != -1) {
         final updatedReminder = reminders[reminderIndex].copyWith(
@@ -81,11 +86,17 @@ class EditNotifier extends _$EditNotifier {
           updatedReminder,
           endType,
           endAt,
-          task.remindMinute!,
+          endReminderMinutes,
           task.title,
         );
       } else {
-        await _createReminder(endAt, endType, task.id, 0, task.title);
+        await _createReminder(
+          endAt,
+          endType,
+          task.id,
+          endReminderMinutes,
+          task.title,
+        );
       }
     } else {
       final reminderIndex = reminders.indexWhere((r) => r.type == endType);

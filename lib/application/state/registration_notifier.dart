@@ -22,7 +22,8 @@ class RegistrationNotifier extends _$RegistrationNotifier {
     int repeatCount,
     DateTime? startAt,
     DateTime? endAt,
-    int? remindMinute,
+    int? startReminderMinutes,
+    int? endReminderMinutes,
   ) async {
     final task = Task.create(
       title,
@@ -32,41 +33,22 @@ class RegistrationNotifier extends _$RegistrationNotifier {
       repeatCount,
       startAt,
       endAt,
-      remindMinute,
+      startReminderMinutes,
+      endReminderMinutes,
     );
     await ref.read(todoRepositoryProvider).insert(task);
 
-    if (remindMinute != null) {
-      //final notifyService = NotificationService();
-      final now = DateTime.now();
-      if (startAt != null && startAt.isAfter(now)) {
-        final type = ReminderType.start.index;
-        _createReminder(task.id, title, type, startAt, remindMinute);
-        // final reminderId = _getRemindIdNumber(type);
-        // final reminder = Reminder.create(task.id, reminderId, type, startAt);
-        // await ref.read(todoRepositoryProvider).reminderInsert(reminder);
-        // await notifyService.scheduleNotification(
-        //   reminderId,
-        //   startAt,
-        //   remindMinute,
-        //   title,
-        // );
-        // ref.read(reminderNotifierProvider.notifier).addReminder(reminder);
-      }
-      if (endAt != null && endAt.isAfter(now)) {
-        final type = ReminderType.end.index;
-        _createReminder(task.id, title, type, endAt, 0);
-        // final reminderId = _getRemindIdNumber(type);
-        // final reminder = Reminder.create(task.id, reminderId, type, endAt);
-        // await ref.read(todoRepositoryProvider).reminderInsert(reminder);
-        // await notifyService.scheduleNotification(
-        //   reminderId,
-        //   endAt,
-        //   remindMinute,
-        //   title,
-        // );
-        // ref.read(reminderNotifierProvider.notifier).addReminder(reminder);
-      }
+    final now = DateTime.now();
+    if (startReminderMinutes != null &&
+        startAt != null &&
+        startAt.isAfter(now)) {
+      final type = ReminderType.start.index;
+      _createReminder(task.id, title, type, startAt, startReminderMinutes);
+    }
+
+    if (endReminderMinutes != null && endAt != null && endAt.isAfter(now)) {
+      final type = ReminderType.end.index;
+      _createReminder(task.id, title, type, endAt, endReminderMinutes);
     }
 
     ref.read(taskNotifierProvider.notifier).addTask(task);
@@ -95,3 +77,25 @@ class RegistrationNotifier extends _$RegistrationNotifier {
     return DateTime.now().millisecondsSinceEpoch * 10 + suffix;
   }
 }
+
+// final reminderId = _getRemindIdNumber(type);
+      // final reminder = Reminder.create(task.id, reminderId, type, startAt);
+      // await ref.read(todoRepositoryProvider).reminderInsert(reminder);
+      // await notifyService.scheduleNotification(
+      //   reminderId,
+      //   startAt,
+      //   remindMinute,
+      //   title,
+      // );
+      // ref.read(reminderNotifierProvider.notifier).addReminder(reminder);
+
+// final reminderId = _getRemindIdNumber(type);
+      // final reminder = Reminder.create(task.id, reminderId, type, endAt);
+      // await ref.read(todoRepositoryProvider).reminderInsert(reminder);
+      // await notifyService.scheduleNotification(
+      //   reminderId,
+      //   endAt,
+      //   remindMinute,
+      //   title,
+      // );
+      // ref.read(reminderNotifierProvider.notifier).addReminder(reminder);
