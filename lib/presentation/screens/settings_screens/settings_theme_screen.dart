@@ -34,6 +34,13 @@ class SettingsThemeScreen extends HookConsumerWidget {
                   onChanged: (value) {
                     isDarkMode.value = value;
                     ref.read(settingsProvider.notifier).updateDarkMode(value);
+                    final color = _getPrimaryColorCode(
+                      selectedColorIndex.value,
+                      value,
+                    );
+                    ref
+                        .read(settingsProvider.notifier)
+                        .updatePrimaryColor(color);
                   },
                 ),
               ),

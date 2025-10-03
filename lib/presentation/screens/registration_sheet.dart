@@ -52,7 +52,6 @@ class RegistrationSheet extends HookConsumerWidget {
     }, const []);
 
     return SizedBox(
-      height: MediaQuery.sizeOf(context).height * 0.8,
       child: Column(
         children: [
           AppBar(
@@ -84,7 +83,6 @@ class RegistrationSheet extends HookConsumerWidget {
                             context.push('/list/registration/dateOrder');
                           } else {
                             isLoading.value = true;
-                            //処理変更したため通知はon/offではなくズレを指定
 
                             final notifier = ref.read(
                               registrationNotifierProvider.notifier,
@@ -179,15 +177,21 @@ class RegistrationSheet extends HookConsumerWidget {
                     startAt.value != null || endAt.value != null
                         ? Column(
                           children: [
+                            RegularlyTile(
+                              isRegularly.value,
+                              (index) => isRegularly.value = index,
+                            ),
+                            blank,
                             NotificationTile(
                               ReminderType.start,
                               startReminderMinutes.value,
                               (value) => startReminderMinutes.value = value,
                             ),
-                            CustomDivider(),
-                            RegularlyTile(
-                              isRegularly.value,
-                              (index) => isRegularly.value = index,
+                            blank,
+                            NotificationTile(
+                              ReminderType.end,
+                              endReminderMinutes.value,
+                              (value) => endReminderMinutes.value = value,
                             ),
                           ],
                         )

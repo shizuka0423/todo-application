@@ -176,6 +176,9 @@ final router = GoRouter(
                   pageBuilder: (context, state) {
                     final tags = state.extra as List<Tag>;
                     return BottomSheetPage(
+                      constraints: BoxConstraints(
+                        maxHeight: MediaQuery.sizeOf(context).height * 0.85,
+                      ),
                       builder: (builder) => RegistrationSheet(tags),
                     );
                   },

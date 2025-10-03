@@ -56,7 +56,7 @@ class NotificationTile extends StatelessWidget {
       },
       child: ListTile(
         tileColor: Theme.of(context).colorScheme.surface,
-        shape: RoundedRectangleBorder(borderRadius: AppRadius.top),
+        shape: RoundedRectangleBorder(borderRadius: AppRadius.all),
         minTileHeight: AppSize.tile2,
         leading: AppIcons.notice,
         title: Text(_title),
