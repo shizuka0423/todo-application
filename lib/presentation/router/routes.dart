@@ -5,6 +5,8 @@ class RouterPath {
   static const String list = '/list';
   static const String settings = '/settings';
 
+  static const String datePicker = "datePicker";
+
   static const String edit = 'edit';
   static const String registration = 'registration';
   static const String tagSelect = 'tagSelect';

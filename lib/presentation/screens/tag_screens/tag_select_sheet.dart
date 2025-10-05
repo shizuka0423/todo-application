@@ -25,7 +25,8 @@ class TagSelectSheet extends HookConsumerWidget {
           AppBar(
             shape: RoundedRectangleBorder(borderRadius: AppRadius.appBar),
             leading: TextButton(
-              onPressed: () => context.pop(),
+              //おそらくこれ
+              onPressed: () => context.pop(_selected),
               child: const Text('キャンセル'),
             ),
             leadingWidth: 100,

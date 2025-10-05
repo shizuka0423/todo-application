@@ -10,6 +10,7 @@ import 'package:flutter_todo_application/presentation/dialogs/delete_dialog.dart
 import 'package:flutter_todo_application/presentation/router/dialog_page.dart';
 import 'package:flutter_todo_application/presentation/router/layout_scaffold.dart';
 import 'package:flutter_todo_application/presentation/router/routes.dart';
+import 'package:flutter_todo_application/presentation/screens/date_time_picker_sheet.dart';
 import 'package:flutter_todo_application/presentation/screens/edit_screen.dart';
 import 'package:flutter_todo_application/presentation/screens/home_screen.dart';
 import 'package:flutter_todo_application/presentation/screens/list_screen.dart';
@@ -52,6 +53,22 @@ final router = GoRouter(
               pageBuilder:
                   (context, state) =>
                       NoTransitionPage(key: state.pageKey, child: HomeScreen()),
+
+              routes: [
+                GoRoute(
+                  path: RouterPath.datePicker,
+                  parentNavigatorKey: rootNavigatorKey,
+                  pageBuilder: (context, state) {
+                    //final tags = state.extra as List<Tag>;
+                    return BottomSheetPage(
+                      constraints: BoxConstraints(
+                        maxHeight: MediaQuery.sizeOf(context).height * 0.55,
+                      ),
+                      builder: (builder) => DateTimePickerSheet(),
+                    );
+                  },
+                ),
+              ],
             ),
           ],
         ),

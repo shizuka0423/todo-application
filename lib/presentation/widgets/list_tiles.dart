@@ -219,7 +219,7 @@ class TagTile extends StatelessWidget {
   final ValueChanged<String?> _onChanged;
   @override
   Widget build(BuildContext context) {
-    final isName = _getSelectedLabelText();
+    final isTagName = _getSelectedLabelText();
 
     //final index = _tags.indexWhere((tag) => tag.id == _selectedId);
     // final isName =
@@ -238,7 +238,7 @@ class TagTile extends StatelessWidget {
       tileColor: Theme.of(context).colorScheme.surface,
       leading: AppIcons.tag,
       title: Text('ラベル'),
-      trailing: Text(isName, style: AppText.trailing),
+      trailing: Text(isTagName, style: AppText.trailing),
     );
   }
 

@@ -74,7 +74,8 @@ class RegistrationNotifier extends _$RegistrationNotifier {
   }
 
   int _getRemindIdNumber(int suffix) {
-    return DateTime.now().millisecondsSinceEpoch * 10 + suffix;
+    final seconds = (DateTime.now().millisecondsSinceEpoch ~/ 1000) % 100000000;
+    return seconds * 10 + suffix;
   }
 }
 

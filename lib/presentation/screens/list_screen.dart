@@ -65,22 +65,24 @@ class ListScreen extends HookConsumerWidget {
                         int index,
                       ) {
                         final task = tasks[index];
-                        final Edge edge;
 
-                        //関数化
-                        if (tasks.length == 1) {
-                          edge = Edge.only;
-                        } else if (index == 0) {
-                          edge = Edge.start;
-                        } else if (index == tasks.length - 1) {
-                          edge = Edge.end;
-                        } else {
-                          edge = Edge.middle;
-                        }
+                        // final Edge edge;
+
+                        // //関数化
+                        // if (tasks.length == 1) {
+                        //   edge = Edge.only;
+                        // } else if (index == 0) {
+                        //   edge = Edge.start;
+                        // } else if (index == tasks.length - 1) {
+                        //   edge = Edge.end;
+                        // } else {
+                        //   edge = Edge.middle;
+                        // }
+
                         return Column(
                           children: [
                             //if (index == 0) CustomDivider(),
-                            TaskTile(task, tags, edge),
+                            TaskTile(task, tags),
                             CustomDivider(),
                           ],
                         );
@@ -101,7 +103,7 @@ class ListScreen extends HookConsumerWidget {
 
   void _onPressed(BuildContext context, List<Tag> tags) {
     context.push('/list/registration', extra: tags);
-    _showLocalNotification('title', 'message');
+    //_showLocalNotification('title', 'message');
   }
 
   void _showLocalNotification(String title, String message) {

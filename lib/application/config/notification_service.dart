@@ -104,7 +104,7 @@ class NotificationService {
       );
       debugPrint('通知を設定しました$remindAt');
     } catch (e) {
-      debugPrint('通知のスケジュールに失敗: $e');
+      debugPrint('通知のスケジュールに失敗しました: $e');
       rethrow;
     }
   }
